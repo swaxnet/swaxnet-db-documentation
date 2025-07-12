@@ -57,3 +57,29 @@ curl -X POST https://www.api.swaxnet.xyz/api/storage/upload.php \
   -F "folder=profile_pictures" \
   -F "file=@/path/to/your/image.jpg"
 ```
+## Error Handling
+
+### Common Error Responses
+```json
+{
+  "error": "API key required"
+}
+```
+
+```json
+{
+  "error": "Invalid API key"
+}
+```
+
+```json
+{
+  "error": "Table name required"
+}
+```
+
+```json
+{
+  "error": "Record not found"
+}
+```
