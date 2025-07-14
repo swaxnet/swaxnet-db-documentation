@@ -1,85 +1,57 @@
-## If you already have a table like users and Forder like profile_pictures ready this doc
+# Swaxnet Table & File CRUD API Guide
 
+## ENGLISH
 
-## Complete CRUD Examples
-
-### Create (POST)
+### Table CRUD (Create, Read, Update, Delete)
+- **Create (Insert):**
 ```bash
-# Add a new user
-curl -X POST "https://www.api.swaxnet.xyz/api/data/index.php?table=users" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -d '{
-    "id": "2",
-    "username": "jane_smith",
-    "email": "jane@example.com",
-    "age": 30,
-    "is_active": true,
-    "created_at": "2024-01-15"
-  }'
+POST /api/data/secure.php?swax=TABLE_ID
+Headers: Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+Body: { "username": "john", "email": "john@example.com" }
+```
+- **Read (Get):**
+```bash
+GET /api/data/secure.php?swax=TABLE_ID
+Headers: Authorization: Bearer YOUR_API_KEY
+```
+- **Update:**
+```bash
+PUT /api/data/secure.php?swax=TABLE_ID&id=RECORD_ID
+Headers: Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+Body: { "username": "john_updated" }
+```
+- **Delete:**
+```bash
+DELETE /api/data/secure.php?swax=TABLE_ID&id=RECORD_ID
+Headers: Authorization: Bearer YOUR_API_KEY
 ```
 
-### Read (GET)
-```bash
-# Get all users
-curl -X GET "https://www.api.swaxnet.xyz/api/data/index.php?table=users" \
-  -H "Authorization: Bearer YOUR_API_KEY"
-
-# Get specific user by ID
-curl -X GET "https://www.api.swaxnet.xyz/api/data/index.php?table=users&id=1" \
-  -H "Authorization: Bearer YOUR_API_KEY"
-```
-
-### Update (PUT)
-```bash
-# Update user with ID 1
-curl -X PUT "https://www.api.swaxnet.xyz/api/data/index.php?table=users&id=1" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -d '{
-    "username": "john_doe_updated",
-    "age": 26,
-    "is_active": false
-  }'
-```
-
-### Delete (DELETE)
-```bash
-# Delete user with ID 1
-curl -X DELETE "https://www.api.swaxnet.xyz/api/data/index.php?table=users&id=1" \
-  -H "Authorization: Bearer YOUR_API_KEY"
-```
-
-### Upload File
-```bash
-curl -X POST https://www.api.swaxnet.xyz/api/storage/upload.php \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -F "folder=profile_pictures" \
-  -F "file=@/path/to/your/image.jpg"
-```
-## Error Handling
-
-### Common Error Responses
+#### Example Success Response
 ```json
-{
-  "error": "API key required"
-}
+{ "success": true, "message": "Record inserted successfully" }
+```
+#### Example Error Response
+```json
+{ "error": "Table not found" }
 ```
 
-```json
-{
-  "error": "Invalid API key"
-}
+### File Storage CRUD
+- **Upload File:**
+```bash
+POST /api/storage/upload.php
+Headers: Authorization: Bearer YOUR_API_KEY
+Content-Type: multipart/form-data
+Form Data: folder=FOLDER_NAME, file=(select file)
 ```
 
+#### Example Success Response
 ```json
-{
-  "error": "Table name required"
-}
+{ "success": true, "message": "File uploaded successfully" }
 ```
-
+#### Example Error Response
 ```json
-{
-  "error": "Record not found"
-}
+{ "error": "File extension not allowed" }
 ```
+### you need help contact us 255657779003 whatsapp
